@@ -16,8 +16,9 @@ import {
   Button
 } from "react-native";
 
-type Props = {};
-export default class App extends Component<Props> {
+import ListItem from "./src/components/ListItem/ListItem";
+
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = { placeName: "", places: [] };
@@ -42,7 +43,7 @@ export default class App extends Component<Props> {
 
   render() {
     const placesOutput = this.state.places.map((place, i) => (
-      <Text key={i}>{place}</Text>
+      <ListItem key={i} placeName={place} />
     ));
     return (
       <View style={styles.container}>
@@ -59,7 +60,7 @@ export default class App extends Component<Props> {
             onPress={this.placeSubmitHandler}
           />
         </View>
-        <View>{placesOutput}</View>
+        <View style={styles.listContainer}>{placesOutput}</View>
       </View>
     );
   }
@@ -85,5 +86,8 @@ const styles = StyleSheet.create({
   },
   placeButton: {
     width: "30%"
+  },
+  listContainer: {
+    width: "100%"
   }
 });
