@@ -12,8 +12,6 @@ import { StyleSheet, View } from "react-native";
 import PlaceInput from "./src/components/PlaceInput/PlaceInput";
 import PlaceList from "./src/components/PlaceList/PlaceList";
 
-import placeImage from "./src/assets/beautiful-place.jpg";
-
 export default class App extends Component {
   state = {
     places: []
@@ -25,7 +23,10 @@ export default class App extends Component {
         places: prevState.places.concat({
           key: Math.random(),
           name: placeName,
-          image: placeImage
+          image: {
+            uri:
+              "https://gbdmagazine.com/wp-content/uploads/2018/05/Bogota%CC%81-green-building-e1525272094931.jpg"
+          }
         })
       };
     });
