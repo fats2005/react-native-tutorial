@@ -11,9 +11,13 @@ import ButtonWithBackground from "../../components/UI/ButtonWithBackground/Butto
 import backgroundImage from "../../assets/background.jpg";
 import validate from "../../utility/validation";
 
+import { connect } from "react-redux";
+import { tryAuth } from "../../store/actions/index";
+
 class AuthScreen extends Component {
   state = {
     viewMode: Dimensions.get("window").height > 500 ? "portrait" : "landscape",
+    authMode: "login",
     controls: {
       email: {
         value: "",
@@ -59,6 +63,11 @@ class AuthScreen extends Component {
   };
 
   loginHandler = () => {
+    const authData = {
+      email: this.state.controls.email.value,
+      password: this.state.controls.password.value
+    };
+    this.props.onLogin(authData);
     startMainTabs();
   };
 
@@ -229,4 +238,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AuthScreen;
+const mapDispatchToProps = dispatch => {
+  return {
+    onLogin: authData => dispatch(tryAuth(authData))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AuthScreen);
