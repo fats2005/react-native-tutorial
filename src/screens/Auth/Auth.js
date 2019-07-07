@@ -56,6 +56,14 @@ class AuthScreen extends Component {
     Dimensions.removeEventListener("change", this.updateStyles);
   }
 
+  switchAuthModeHandler = () => {
+    this.setState(prevState => {
+      return {
+        authMode: prevState.authMode === "login" ? "signup" : "login"
+      };
+    });
+  };
+
   updateStyles = dims => {
     this.setState({
       viewMode: dims.window.height > 500 ? "portrait" : "landscape"
@@ -122,6 +130,8 @@ class AuthScreen extends Component {
 
   render() {
     let headingText = null;
+    let confirmPasswordConstrol = null;
+
     if (this.state.viewMode === "portrait") {
       headingText = (
         <MaintText>
@@ -130,12 +140,36 @@ class AuthScreen extends Component {
       );
     }
 
+    if (this.state.authMode === "signup") {
+      confirmPasswordConstrol = (
+        <View
+          style={
+            this.state.viewMode === "portrait"
+              ? styles.ptPasswordWrapper
+              : styles.lsPasswordWrapper
+          }
+        >
+          <DefaultInput
+            placeholder="Confirm Password"
+            style={styles.input}
+            value={this.state.controls.confirmPassword.value}
+            onChangeText={val => this.updateInputState("confirmPassword", val)}
+            valid={this.state.controls.confirmPassword.valid}
+            touched={this.state.controls.confirmPassword.touched}
+          />
+        </View>
+      );
+    }
+
     return (
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
         <View style={styles.container}>
           {headingText}
-          <ButtonWithBackground color="#29aaf4">
-            Switch to Login
+          <ButtonWithBackground
+            color="#29aaf4"
+            onPress={this.switchAuthModeHandler}
+          >
+            Switch to {this.state.authMode === "login" ? "Sign Up" : "Login"}
           </ButtonWithBackground>
           <View style={styles.inputContainer}>
             <DefaultInput
@@ -148,14 +182,16 @@ class AuthScreen extends Component {
             />
             <View
               style={
-                this.state.viewMode === "portrait"
+                this.state.viewMode === "portrait" ||
+                this.state.authMode === "login"
                   ? styles.ptPasswordContainer
                   : styles.lsPasswordContainer
               }
             >
               <View
                 style={
-                  this.state.viewMode === "portrait"
+                  this.state.viewMode === "portrait" ||
+                  this.state.authMode === "login"
                     ? styles.ptPasswordWrapper
                     : styles.lsPasswordWrapper
                 }
@@ -169,33 +205,17 @@ class AuthScreen extends Component {
                   touched={this.state.controls.password.touched}
                 />
               </View>
-              <View
-                style={
-                  this.state.viewMode === "portrait"
-                    ? styles.ptPasswordWrapper
-                    : styles.lsPasswordWrapper
-                }
-              >
-                <DefaultInput
-                  placeholder="Confirm Password"
-                  style={styles.input}
-                  value={this.state.controls.confirmPassword.value}
-                  onChangeText={val =>
-                    this.updateInputState("confirmPassword", val)
-                  }
-                  valid={this.state.controls.confirmPassword.valid}
-                  touched={this.state.controls.confirmPassword.touched}
-                />
-              </View>
+              {confirmPasswordConstrol}
             </View>
           </View>
           <ButtonWithBackground
             color="#29aaf4"
             onPress={this.loginHandler}
             disabled={
+              (!this.state.controls.confirmPassword.valid &&
+                this.state.authMode === "signup") ||
               !this.state.controls.email.valid ||
-              !this.state.controls.password.valid ||
-              !this.state.controls.confirmPassword.valid
+              !this.state.controls.password.valid
             }
           >
             Login
