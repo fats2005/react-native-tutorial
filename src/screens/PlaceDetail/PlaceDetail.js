@@ -13,11 +13,12 @@ import {
 import { connect } from "react-redux";
 
 import Icon from "react-native-vector-icons/Ionicons";
+import MapView from "react-native-maps";
 import { deletePlace } from "../../store/actions/index";
 
 class PlaceDetail extends Component {
   state = {
-    viewMode: Dimensions.get("window").width > 500 ? "portrait" : "landscape"
+    viewMode: Dimensions.get("window").width < 500 ? "portrait" : "landscape"
   };
 
   constructor(props) {
@@ -31,7 +32,7 @@ class PlaceDetail extends Component {
 
   updateStyles = dims => {
     this.setState({
-      viewMode: dims.window.width > 500 ? "portrait" : "landscape"
+      viewMode: dims.window.width < 500 ? "portrait" : "landscape"
     });
   };
 
@@ -40,15 +41,19 @@ class PlaceDetail extends Component {
     this.props.navigator.pop();
   };
   render() {
+    const { viewMode } = this.state;
+
+    const location = {
+      ...this.props.selectedPlace.location,
+      latitudeDelta: 0.0122,
+      longitudeDelta:
+        (Dimensions.get("window").width / Dimensions.get("window").height) *
+        0.0122
+    };
+
     return (
-      <View style={styles.containar}>
-        <View>
-          <Image
-            source={this.props.selectedPlace.image}
-            style={styles.placeImage}
-          />
-        </View>
-        <View>
+      <View style={styles.container}>
+        <View style={styles.titleContainer}>
           <View>
             <Text style={styles.placeName}>
               {this.props.selectedPlace.name}
@@ -64,17 +69,46 @@ class PlaceDetail extends Component {
             </View>
           </TouchableOpacity>
         </View>
+        <View
+          style={
+            viewMode === "portrait"
+              ? styles.ptInfoContainer
+              : styles.lsInfoContainer
+          }
+        >
+          <View>
+            <Image
+              source={this.props.selectedPlace.image}
+              style={
+                viewMode === "portrait"
+                  ? styles.ptPlaceImage
+                  : styles.lsPlaceImage
+              }
+            />
+          </View>
+          <View>
+            <MapView
+              style={viewMode === "portrait" ? styles.ptMap : styles.lsMap}
+              initialRegion={location}
+            >
+              <MapView.Marker coordinate={location} />
+            </MapView>
+          </View>
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  containar: { margin: 22 },
-  placeImage: {
-    width: "100%",
-    height: 200
+  container: { margin: 22 },
+  titleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+    justifyContent: "space-between"
   },
+
   placeName: {
     fontWeight: "bold",
     textAlign: "center",
@@ -82,6 +116,31 @@ const styles = StyleSheet.create({
   },
   deleteButton: {
     alignItems: "center"
+  },
+  ptInfoContainer: {
+    flexDirection: "column"
+  },
+  lsInfoContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  ptPlaceImage: {
+    width: "100%",
+    height: 200,
+    marginBottom: 10
+  },
+  lsPlaceImage: {
+    width: "45%",
+    height: 200,
+    marginBottom: 10
+  },
+  ptMap: {
+    width: "100%",
+    height: 250
+  },
+  lsMap: {
+    width: "45%",
+    height: 200
   }
 });
 

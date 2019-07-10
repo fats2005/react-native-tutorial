@@ -24,7 +24,7 @@ import { tryAuth } from "../../store/actions/index";
 
 class AuthScreen extends Component {
   state = {
-    viewMode: Dimensions.get("window").height > 500 ? "portrait" : "landscape",
+    viewMode: Dimensions.get("window").width < 500 ? "portrait" : "landscape",
     authMode: "login",
     controls: {
       email: {
@@ -74,7 +74,7 @@ class AuthScreen extends Component {
 
   updateStyles = dims => {
     this.setState({
-      viewMode: dims.window.height > 500 ? "portrait" : "landscape"
+      viewMode: dims.window.width < 500 ? "portrait" : "landscape"
     });
   };
 
