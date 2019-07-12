@@ -4,7 +4,9 @@ import {
   Button,
   StyleSheet,
   ScrollView,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Text,
+  ActivityIndicator
 } from "react-native";
 import { connect } from "react-redux";
 
@@ -106,6 +108,23 @@ class SharePlaceScreen extends Component {
     this.props.onAddPlace(placeName.value, location.value, image.value);
   };
   render() {
+    const { isLoading } = this.props;
+
+    let submitButton = (
+      <Button
+        title="Share the Place!"
+        onPress={this.placedAddedHandler}
+        disabled={
+          !this.state.controls.placeName.valid ||
+          !this.state.controls.location.valid ||
+          !this.state.controls.image.valid
+        }
+      />
+    );
+
+    if (isLoading) {
+      submitButton = <ActivityIndicator />;
+    }
     return (
       <ScrollView>
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
@@ -118,17 +137,7 @@ class SharePlaceScreen extends Component {
             placeData={this.state.controls.placeName}
             onChangeText={this.placeNameChangeHandler}
           />
-          <View style={styles.button}>
-            <Button
-              title="Share the Place!"
-              onPress={this.placedAddedHandler}
-              disabled={
-                !this.state.controls.placeName.valid ||
-                !this.state.controls.location.valid ||
-                !this.state.controls.image.valid
-              }
-            />
-          </View>
+          <View style={styles.button}>{submitButton}</View>
         </KeyboardAvoidingView>
       </ScrollView>
     );
@@ -144,6 +153,12 @@ const styles = StyleSheet.create({
     margin: 8
   }
 });
+
+const mapStateToProps = state => {
+  return {
+    isLoading: state.ui.isLoading
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
     onAddPlace: (placeName, location, image) =>
@@ -151,6 +166,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SharePlaceScreen);
