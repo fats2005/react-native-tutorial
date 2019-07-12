@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "rich-sunlight-246205",
+  "private_key_id": "390a5fd430c52c63e63cf115ea9976c5d7e8279f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDCtBX8UOUDbbNT\n0Lcq7wdgJTJYSQI4/GkRRoQACXBdy7UXerpAc0seaQHPTJG3fZn9BkaES5vwGvu+\nWHta8BNRy9OccfwEVr1XFEotJDz5z0319uYd5jNqtebqW2qzvyi1JtRIDJGkQU11\nc2XZF+RPnyEUi+BmS/WAoekWO7XN9KR13ii5Gtgw4zcsvLDDfgQfhOHL+eWILwkv\nGW6mJ/Kk3SxHsl3Hfs+e82aA3XhpmfKQYzm+t1bhomGkhJVEh9889uYVdy67VUSZ\ntOk3p4HbTIdZkyxI9TllaBiYo/6awTiXa5tpIsW1MMvnDndZY6PwOL1F2tzBu4Qy\nEzFYTEu7AgMBAAECggEARsRFqWuNkW1x3Gjj6krul1dtsQD4OdYkKg9DMvA7UxwT\nOfF1eK9vAiKQcdQWsmaIbZq2TqdciiyEi26Fh0vy+avnwdj8DGeqcdgCDd45+2IJ\np/iRMxTUY1iyEUQgyCwWk6EFTxqiZN0HVkUXI4y3gukHkPw2F3hMRvCSU25oae55\nmbm6qR3dcn7Bc26nzCOAibemK49dYc5jywqcXDjsgqn2SWnK2T8uLG+lZMT6wGlj\nXoTdMsSd0C8kjWrzu5fkip/2UoEe7YjU9J/HBpbHbkXQfE23aiZyy888r4eiICpx\nqCAjvPxRMqlhvZzsg5mwkamtQZkWRdxTc2Je/qUXYQKBgQD+bvBQHfPPFpcbwhAG\nFJKMge2dYqfTU36HQ/iqHqXhF8PPgDKJdQPRI09etZb/B8qps9akA/RtN4JRISgf\nyHlSMvVGGJz27Sh0dGGwAeN1bWth5W6iCWtnXKnQLqCWJVumCzcYcEl4y5rWiU2c\nKHvpR1NMLALMvfHmYM2UQE8PTQKBgQDD5v7SmZlm5qpL+ImNjLVAMIaLsiCqoe1c\n47VCJ+32mfgfI8DId6/rfGUeJNbLLON96Tp6kHvNdIHxVwt0gvBqBNedS75NfH+V\nUjKkOjef3tdmsDfCWbLdZukYPJIHLStCeXFMtS70R6lBmL+sMsXlGNDRk4VaWq79\n/LbdQ/dTJwKBgQCkT1qMMrunygvt1iZo9tIpQSMFV5fQBoSYsBGfM0mmkqVWlJCO\nam37mpUAMb8AlbSQYV5E73TjL0zOPd5eoCWRKu1wxiZf5IoSorIPazjMNcx6HSOU\nKwccaiAUHHiCXj/QfD+pXaJlCv/EekkPhql23iPx9h4cwLG+OFeq3NjxpQKBgQCr\n2rSo434jOy8hvkJNHqbSTL97RSRLDApCdq/H/WdP8fostxyjv/tfxZyfOQoE6rgW\n+McIRj+VGSP1J7sw1r05BE5x+sRTDWiPAbDTSQ8K/F5SAzynDjFO8LyDOn+QNBvD\nEO5HsJokSck9dlaPJWtdcsudTqCphuwEe/GfYcRR+QKBgQCtFzIetxZ96VFF+0uT\neVOPJo7Xu9o2M4cg9uW8wP6hwk5YJJ9X8RMhUoPxm5pBm5yjKA5GVBU1ahLCmje4\nwuLJjERV5z/MRSoJyOxDvpP/rxdHmzcP4C1nxlvTRqhzVsJZJYomqb0EecSdvnJw\nXCBOo8b5/leVnZuC4ecZUk4ajQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-bo7hg@rich-sunlight-246205.iam.gserviceaccount.com",
+  "client_id": "104447492580791455525",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-bo7hg%40rich-sunlight-246205.iam.gserviceaccount.com"
+}
