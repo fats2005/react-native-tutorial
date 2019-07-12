@@ -20,7 +20,7 @@ import backgroundImage from "../../assets/background.jpg";
 import validate from "../../utility/validation";
 
 import { connect } from "react-redux";
-import { tryAuth } from "../../store/actions/index";
+import { tryAuth } from "../../store/actions";
 
 class AuthScreen extends Component {
   state = {

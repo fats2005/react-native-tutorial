@@ -1,6 +1,7 @@
 export const SET_PLACES = "SET_PLACES";
+export const REMOVE_PLACE = "REMOVE_PLACE";
 
-import { uiStartLoading, uiStopLoading } from "./actions/index";
+import { uiStartLoading, uiStopLoading } from "./actions";
 
 export const addPlace = (placeName, location, image) => {
   return dispatch => {
@@ -78,9 +79,29 @@ export const setPlaces = places => {
   };
 };
 
-// export const deletePlace = key => {
-//   return {
-//     type: DELETE_PLACE,
-//     placeKey: key
-//   };
-// };
+export const deletePlace = key => {
+  return dispatch => {
+    dispatch(removePlace(key));
+    fetch(
+      "https://rich-sunlight-246205.firebaseio.com/places/" + key + ".json",
+      {
+        method: "DELETE"
+      }
+    )
+      .catch(err => {
+        alert("Something went wrong, sorry :/");
+        console.log(err);
+      })
+      .then(res => res.json())
+      .then(parsedRes => {
+        console.log(parsedRes, "Done!");
+      });
+  };
+};
+
+export const removePlace = key => {
+  return {
+    type: REMOVE_PLACE,
+    key
+  };
+};

@@ -1,4 +1,4 @@
-import { SET_PLACES } from "./placesActions";
+import { SET_PLACES, REMOVE_PLACE } from "./placesActions";
 
 const initialState = {
   places: []
@@ -11,13 +11,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         places: action.places
       };
-    // case DELETE_PLACE:
-    //   return {
-    //     ...state,
-    //     places: state.places.filter(place => {
-    //       return place.key !== action.placeKey;
-    //     })
-    //   };
+    case REMOVE_PLACE:
+      return {
+        ...state,
+        places: state.places.filter(place => {
+          return place.key !== action.key;
+        })
+      };
     default:
       return state;
   }

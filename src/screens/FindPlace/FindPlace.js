@@ -9,7 +9,7 @@ import {
 import { connect } from "react-redux";
 
 import PlaceList from "../../components/PlaceList/PlaceList";
-import { getPlaces } from "../../store/actions/index";
+import { getPlaces } from "../../store/actions";
 
 class FindPlaceScreen extends Component {
   static navigatorStyle = {

@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 
 import Icon from "react-native-vector-icons/Ionicons";
 import MapView from "react-native-maps";
-import { deletePlace } from "../../store/actions/index";
+import { deletePlace } from "../../store/actions";
 
 class PlaceDetail extends Component {
   state = {
