@@ -5,7 +5,7 @@ const UUID = require("uuid-v4");
 
 const gcconfig = {
   projectId: "rich-sunlight-246205",
-  keyFilename: "awesome-places.json"
+  keyFilename: "server-settings.json"
 };
 
 const gcs = require("@google-cloud/storage")(gcconfig);

@@ -51,3 +51,12 @@ export const auhSetToken = token => {
     token
   };
 };
+
+export const authGetToken = () => {
+  return (dispatch, getState) => {
+    const token = new Promise((resolve, reject) => {
+      if (!token) reject();
+      else resolve(token);
+    });
+  };
+};
